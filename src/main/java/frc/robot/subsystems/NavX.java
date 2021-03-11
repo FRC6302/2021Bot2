@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -32,8 +33,10 @@ public class NavX extends SubsystemBase{
     return gyro.getYaw(); 
   }
 
-  public static double getGyroRotation2d() {
-    return 0;
+  //navx didnt have a built in getRotation2d method (in this WPILIB version) so i had to get it like this
+  public static Rotation2d getGyroRotation2d() {
+    //i made yaw negative because it needs to increase as it turns left to work for DiffDrive
+    return Rotation2d.fromDegrees(-gyro.getYaw());
   }
 
   public static void zeroGyroYaw() {

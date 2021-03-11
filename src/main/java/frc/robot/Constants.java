@@ -16,9 +16,40 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+	//motors
+	public static final int motorL1Value = 0;
+	public static final int motorL2Value = 1;
+	public static final int motorR1Value = 2;
+	public static final int motorR2Value = 3;
 
-	public static final int motorL1Value = 30;
-	public static final int motorL2Value = 31;
-	public static final int motorR1Value = 32;
-	public static final int motorR2Value = 33;
+	//controller ports
+	public static final int driverControllerPort = 0;
+	//public static final int operatorControllerPort = 1;
+
+	//controller values
+    public static final int leftTrigger = 2;
+    public static final int rightTrigger = 3;
+    public static final int leftStickX = 0;
+    public static final int leftStickY = 1;
+    public static final int rightStickX = 4;
+    public static final int rightStickY = 5;
+    public static final int aButton = 1;
+    public static final int bButton = 2;
+    public static final int xButton = 3;
+    public static final int yButton = 4;
+    public static final int leftBumper = 5;
+    public static final int rightBumper = 6;
+
+    //encoders
+    public static final int leftDriveEncChannelA = 8; //roborio DIO pins
+    public static final int leftDriveEncChannelB = 7;
+    public static final int rightDriveEncChannelA = 1;
+	public static final int rightDriveEncChannelB = 2;
+    
+	//misc
+	public static final double axisDeadzone = 0.4;
+    public static final double turningRate = 0.7;
+	
+	
+    
 }
