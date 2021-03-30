@@ -7,10 +7,13 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.NavX;
 
 public class DriveGTA extends CommandBase {
   private final DriveTrain driveTrain;
@@ -28,6 +31,9 @@ public class DriveGTA extends CommandBase {
   @Override
   public void initialize() {
     //setSafetyE
+    driveTrain.resetEncoders();
+    NavX.zeroGyroYaw();
+    driveTrain.resetOdometry(new Pose2d(0, 0, new Rotation2d(0)));
   }
 
   // Called every time the scheduler runs while the command is scheduled.

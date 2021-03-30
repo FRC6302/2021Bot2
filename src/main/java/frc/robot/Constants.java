@@ -7,13 +7,17 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
+
 /**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants.  This class should not be used for any other purpose.  All constants should be
- * declared globally (i.e. public static).  Do not put anything functional in this class.
+ * The Constants class provides a convenient place for teams to hold robot-wide
+ * numerical or boolean constants. This class should not be used for any other
+ * purpose. All constants should be declared globally (i.e. public static). Do
+ * not put anything functional in this class.
  *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
- * constants are needed, to reduce verbosity.
+ * <p>
+ * It is advised to statically import this class (or one of its inner classes)
+ * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
 	//motors
@@ -40,15 +44,42 @@ public final class Constants {
     public static final int leftBumper = 5;
     public static final int rightBumper = 6;
 
+    //values obtained from frc drive characterization routine
+    public static final double ksVolts = 0.978; //orig 1.08
+    public static final double kvVoltSecondsPerMeter = 3.02; //orig 2.99
+    public static final double kaVoltSecondsSquaredPerMeter = 0;//0.0561; //orig 0.0171
+    public static final double kPDriveVel = 0.0133 / 10; //orig 0.065
+    public static final double kTrackwidthMeters = 0.578180; //orig 0.5778765
+    public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
+
+    //values i stole from wpilib for testing
+    //public static final double ksVolts = 0.22;
+    //public static final double kvVoltSecondsPerMeter = 1.98;
+    //public static final double kaVoltSecondsSquaredPerMeter = 0.2;
+    //public static final double kPDriveVel = 8.5;
+
+    
     //encoders
-    public static final int leftDriveEncChannelA = 8; //roborio DIO pins
-    public static final int leftDriveEncChannelB = 7;
+    public static final int leftDriveEncChannelA = 7; //roborio DIO pins that the cables are plugged into
+    public static final int leftDriveEncChannelB = 8;
     public static final int rightDriveEncChannelA = 1;
-	public static final int rightDriveEncChannelB = 2;
+    public static final int rightDriveEncChannelB = 2;
+    public static final int testEncChannelA = 7;
+    public static final int testEncChannelB = 8;
+    
+    //move command
+    public static final double MoveTime = 0.5;
+	public static final double leftMotorsMoveSpeed = 0.5;
+	public static final double rightMotorsMoveSpeed = 0.5;
     
 	//misc
 	public static final double axisDeadzone = 0.4;
     public static final double turningRate = 0.7;
+    public static final double kMaxSpeedMetersPerSecond = .8;
+    public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+    //"Reasonable baseline values for a RAMSETE follower in units of meters and seconds" -wpilib website
+    public static final double kRamseteB = 2;
+    public static final double kRamseteZeta = 0.7;
 	
 	
     
