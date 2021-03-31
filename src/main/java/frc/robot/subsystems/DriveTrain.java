@@ -74,7 +74,7 @@ public class DriveTrain extends SubsystemBase {
     rightDriveEnc.setDistancePerPulse(driveEncDPP);
     //the samples to average thing makes the data less noisy
     //dont change number without testing the new number with the frc drive charaterization data plots
-    leftDriveEnc.setSamplesToAverage(30);
+    leftDriveEnc.setSamplesToAverage(30); //30
     rightDriveEnc.setSamplesToAverage(30);
 
     //leftDriveEnc2.setDistancePerRotation(driveEncDPP);
@@ -106,8 +106,8 @@ public class DriveTrain extends SubsystemBase {
     odometry = new DifferentialDriveOdometry(NavX.getGyroRotation2d());
     
   }
-  //TODO: follow along troubleshooting trajectory wpilib article. Try to copy paste all their constants and see if it works. Or trying to increase encoder averages to sample and see what happens
-
+  //TODO: follow along troubleshooting trajectory wpilib article
+  //TODO: make a test path with PathWeaver and then put it into trajectory. If that doesnt work then post to chief delphi
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
