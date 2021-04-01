@@ -7,9 +7,20 @@
 
 package frc.robot;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.List;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.trajectory.Trajectory;
+import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.NavX;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,6 +32,9 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   public static RobotContainer robotContainer;
+  public static String trajectoryJSON;
+  public static Path testPath;
+  public static Trajectory testTrajectory;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -28,6 +42,20 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    Robot.trajectoryJSON = "PathWeaver/output/BarrelRacing.wpilib.json";
+    Trajectory.State testState = new Trajectory.State(1., 1., 1., new Pose2d(0, 0, new Rotation2d(0)), 1.);
+    Robot.testTrajectory = new Trajectory(List.of(testState));
+    try {
+    Robot.testPath = Filesystem.getDeployDirectory().toPath().resolve(Robot.trajectoryJSON);
+    } catch (RuntimeException ex) {
+      DriverStation.reportError("Unable to open trajectory : " + Robot.trajectoryJSON, ex.getStackTrace());
+    }
+    try {
+
+      testTrajectory = TrajectoryUtil.fromPathweaverJson(Robot.testPath);
+    } catch (IOException ex) {
+      DriverStation.reportError("Unable to change path to trajectory because:", ex.getStackTrace());
+    }
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
@@ -65,6 +93,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    NavX.zeroGyroYaw();
+
     m_autonomousCommand = robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)

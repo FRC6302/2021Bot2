@@ -115,6 +115,7 @@ public class DriveTrain extends SubsystemBase {
     var translation = odometry.getPoseMeters().getTranslation();
     SmartDashboard.putNumber("translation x", translation.getX());
     SmartDashboard.putNumber("translation y", translation.getY());
+    SmartDashboard.putNumber("rotation2d", odometry.getPoseMeters().getRotation().getDegrees());
 
     SmartDashboard.putNumber("leftDriveEncDistance", leftDriveEnc.getDistance());
     SmartDashboard.putNumber("leftDriveEncRate", leftDriveEnc.getRate());

@@ -36,7 +36,7 @@ public class NavX extends SubsystemBase{
   //navx didnt have a built in getRotation2d method (in this WPILIB version) so i had to get it like this
   public static Rotation2d getGyroRotation2d() {
     //i made yaw negative because it needs to increase as it turns left to work for DiffDrive
-    return Rotation2d.fromDegrees(gyro.getYaw());
+    return Rotation2d.fromDegrees(getGyroYaw());
   }
 
   public static void zeroGyroYaw() {

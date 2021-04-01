@@ -75,8 +75,8 @@ public final class Constants {
 	//misc
 	public static final double axisDeadzone = 0.4;
     public static final double turningRate = 0.7;
-    public static final double kMaxSpeedMetersPerSecond = 1;
-    public static final double kMaxAccelerationMetersPerSecondSquared = 1;
+    public static final double kMaxSpeedMetersPerSecond = 1.5;
+    public static final double kMaxAccelerationMetersPerSecondSquared = 3;
     //"Reasonable baseline values for a RAMSETE follower in units of meters and seconds" -wpilib website
     public static final double kRamseteB = 2;
     public static final double kRamseteZeta = 0.7;
